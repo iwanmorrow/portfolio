@@ -3,103 +3,75 @@
 ```markdown
 # MORROW
 
-A cinematic, scroll-driven personal portfolio for **Morrow** — independent developer focused on systems software and cybersecurity.
+A personal portfolio that happens to be a single HTML file.
 
-Single-file HTML. No build step. No frameworks.
+Scroll down and a chrome shape morphs through four different geometries. Rings spin around it. Background objects drift in and out of focus. Scroll back up and it all reverses. That's the whole idea — the page is one continuous 3D scene, and scrolling is the only control.
 
----
-
-## About
-
-MORROW is not a template portfolio. It's a personal site built around three ideas:
-
-- **Honest positioning** — the site describes real work with real statuses, not inflated titles or percentages.
-- **Cinematic pacing** — sections are treated as scenes; scrolling drives a continuous 3D narrative.
-- **Restraint** — a monochrome visual language with chrome materials, chrome rings and chrome geometry instead of neon.
-
-The site is intentionally a single `index.html`. It loads only what it needs, works without a bundler, and degrades gracefully when WebGL is unavailable.
+I'm Morrow. I write mostly Rust, I'm interested in systems and security, and this site is a fairly direct translation of how I think about software: no unnecessary layers, no bundler, no framework pretending to be something it isn't.
 
 ---
 
-## Features
+## What's actually in here
 
-- **Live Three.js scene** with a chrome morphing centerpiece that transitions between four geometric states as you scroll.
-- **Orbital system** — thin orbit lines with chrome particles traveling along their paths.
-- **Background geometry** — depth-layered chrome objects with continuous rotation and scroll parallax.
-- **Ambient particles**, ACES Filmic tone mapping, exponential fog, vignette and film grain.
-- **Scroll-driven morphing** via `morphAttributes` (GPU-side), synced to `ScrollTrigger`.
-- **Bidirectional animations** — everything plays forward and reverses cleanly on scroll-up.
-- **Lenis smooth scrolling**, wired into `gsap.ticker` as a single animation step.
-- **Scroll spy navigation** — navbar and right-side progress rail track the active scene.
-- **Accessibility** — respects `prefers-reduced-motion`, keyboard-navigable, `aria-current` on active links.
-- **Responsive** — mobile menu, tuned geometry and reduced particle counts on touch devices.
+The entire site is `index.html`. Open it, read it, edit it. Nothing is hidden behind a build step.
+
+What's inside:
+
+- **A Three.js scene** with a chrome object that morphs between four shapes as you scroll (organic → elongated → complex → compact). The morphing runs on the GPU via `morphAttributes`, not vertex-by-vertex JS.
+- **Orbital rings** with small chrome particles moving along their paths. Different speeds, different planes.
+- **Background geometry** — a torus, a sphere, a ring, an icosahedron — each rotating on its own axis at its own pace, with scroll parallax to give the whole thing depth.
+- **Atmospheric particles**, ACES Filmic tone mapping, fog, vignette, film grain. It's dark on purpose.
+- **Scroll choreography** with GSAP + ScrollTrigger. Every animation reverses when you scroll back up. Not just the scrub ones — the reveal animations too.
+- **Lenis** for smooth scrolling, but it's wired into `gsap.ticker` as a single animation step. No duplicate RAF loops. That was a bug once. It's fixed.
+- **A working scroll spy** — navbar and the right-side rail both track which section you're in.
+- **Graceful degradation** — no WebGL? You get a static fallback glow. `prefers-reduced-motion`? Everything renders in its final state, no animation loops.
 
 ---
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Markup & Styling | Semantic HTML5 + Vanilla CSS |
-| Typography | Space Grotesk · Inter · JetBrains Mono |
-| 3D | Three.js r160 (ESM via importmap) |
-| Scroll & Animation | GSAP + ScrollTrigger |
-| Smooth Scroll | Lenis |
-| Interaction | Vanilla JS |
+```
+HTML + CSS + vanilla JS
+Three.js        (3D scene)
+GSAP + ScrollTrigger  (scroll animation)
+Lenis           (smooth scrolling)
+Space Grotesk · Inter · JetBrains Mono
+```
 
-**No frameworks, no bundlers, no build step.**
+That's it. No React, no Vite, no Tailwind, no npm install.
 
 ---
 
-## Project Structure
+## Running it
 
-```
-morrow/
-├── index.html
-└── img/
-    ├── portrait.jpg
-    ├── NL.png
-    ├── SYSTEMA.png
-    └── EMV.png
-```
-
----
-
-## Getting Started
-
-The site uses ES module imports, so it must be served over HTTP — opening the file directly via `file://` will not work in most browsers.
-
-**Any static server works:**
+The site uses ES module imports, so opening `index.html` from your desktop won't work. You need a server.
 
 ```bash
-# Python
 python3 -m http.server 8080
-
-# Node
-npx serve .
 ```
 
-Then open `http://localhost:8080`.
+Then `http://localhost:8080`.
 
-**Deployment** — drop the folder into any static host:
+Or, if you're deploying:
 
-- **GitHub Pages** — push, then enable Pages from `Settings → Pages → Deploy from branch → main`.
+- **GitHub Pages** — push to a repo, `Settings → Pages → Deploy from branch → main`. Done.
 - **Cloudflare Pages / Netlify / Vercel** — connect the repo, no build command, output directory `.`.
+
+That's genuinely the whole setup.
 
 ---
 
-## Customization
+## Editing it
 
-Everything lives in `index.html`. Common edits:
+Everything is in one file. Here's where to look:
 
-**Personal details** — search and replace:
+**Personal details** — search for these strings:
+- `hello@morrow.dev` — email
+- `@iwanmorrow`, `@voobw`, `@morrow737` — socials
+- `Donetsk region, Ukraine` — location line
+- Images live in `img/` (`portrait.jpg`, `NL.png`, `SYSTEMA.png`, `EMV.png`)
 
-- `hello@morrow.dev` — contact email.
-- `@iwanmorrow`, `@voobw`, `@morrow737` — social handles.
-- `Donetsk region, Ukraine` — location line.
-- Portrait and project images in the `img/` folder.
-
-**Colors & typography** — CSS custom properties at the top of `<style>`:
+**Palette** — CSS variables at the top:
 
 ```css
 :root {
@@ -107,20 +79,17 @@ Everything lives in `index.html`. Common edits:
   --fg: #f4f4f4;
   --muted: #7a7a82;
   --line: #1a1a20;
-  --silver: linear-gradient(135deg, #fff 0%, #c8c8d0 40%, #888890 70%, #e8e8ec 100%);
-  --mono: 'JetBrains Mono', monospace;
-  --sans: 'Inter', sans-serif;
-  --display: 'Space Grotesk', sans-serif;
+  --silver: linear-gradient(135deg, #fff, #c8c8d0 40%, #888890 70%, #e8e8ec);
 }
 ```
 
-Changing `--bg`, `--fg`, `--muted`, `--line` and `--silver` shifts the entire palette.
+Change `--bg` and `--fg` and the whole site shifts. The chrome materials use `MeshStandardMaterial` with `metalness: 1` — they reflect the environment, so you don't need to touch them unless you want a different finish.
 
-**Stack section** — plain HTML. Each `.stack-item` accepts a `--pct` custom property that controls the bar fill width.
+**Stack section** — plain HTML. Each `.stack-item` has a `--pct` on the inline style. Bar fills automatically.
 
-**Projects** — each `<article class="project-chapter">` is independent. The `.project-status` pill shows `Active`, `In development`, `Prototype`, `Concept`, or `Archived`.
+**Projects** — each is an `<article class="project-chapter">`. Copy one to add a project. Delete one to remove it. The `.project-status` pill says `Active`, `In development`, `Prototype`, `Concept`, or `Archived` — pick the one that's actually true.
 
-**3D shapes** — four functions inside the module script:
+**The 3D shapes** — four functions in the module script:
 
 ```js
 function shapeOrganic(x, y, z) { ... }
@@ -129,55 +98,51 @@ function shapeComplex(x, y, z) { ... }
 function shapeCompact(x, y, z) { ... }
 ```
 
-Each takes a unit-sphere vertex and returns a new `[x, y, z]`. Three.js handles the interpolation between them via `morphAttributes`.
+Each takes a unit sphere vertex and returns a new position. Change any of them and the morphing updates automatically. The interpolation happens in the shader.
 
 ---
 
 ## Accessibility
 
-- Keyboard-focusable interactive elements.
-- Mobile menu announces state via `aria-expanded`.
-- Active nav links receive `aria-current="page"`.
-- `prefers-reduced-motion` disables Lenis, GSAP timelines and reveal animations; the 3D scene renders one static frame.
-- WebGL absence hides the canvas and shows a CSS fallback glow — content remains fully usable.
-- Touch devices skip mouse parallax and magnetic hover.
+Not an afterthought — the site respects `prefers-reduced-motion` (Lenis doesn't load, GSAP timelines don't create, the 3D scene renders one static frame), keyboard navigation works, the mobile menu announces its state, and active nav links get `aria-current`. If WebGL is missing, the canvas hides and a CSS glow takes its place. Content stays fully usable either way.
 
 ---
 
 ## Performance
 
-- **Single WebGL context** for the whole site.
-- **Instanced meshes** for orbital particles (one draw call).
-- **DPR cap** at 2 (1.5 on wide screens).
-- **Render loop gated** by `IntersectionObserver`.
-- **Reduced geometry and particles on mobile**.
-- **No CSS blur filters or animated box-shadows**.
+- One WebGL context for the whole site, not one per section
+- `InstancedMesh` for orbital particles — 36 spheres in a single draw call
+- DPR capped at 2 (1.5 on wide screens)
+- Render loop gated by `IntersectionObserver` — stops when the canvas is off-screen
+- On mobile: fewer particles, sparser sphere geometry (90×45 instead of 140×70)
+- No animated blur filters, no shadows on moving elements
+
+It runs at 60fps on a mid-range laptop and holds together on phones. On a very old device it drops to a static frame rather than stuttering.
 
 ---
 
-## Browser Support
+## Browser support
 
-Chrome / Edge / Firefox (last 2 versions), Safari 16+, mobile Safari 16+, Chrome Android.
+Chrome, Edge, Firefox (last 2 versions), Safari 16+, mobile Safari 16+, Chrome Android.
 
-Requires `importmap` support (all modern browsers, 2023+).
+Needs `importmap` support — that's all modern browsers as of 2023.
 
 ---
 
 ## Credits
 
-- **Design & Development** — Morrow
-- **3D Engine** — [Three.js](https://threejs.org/)
-- **Scroll Animation** — [GSAP](https://gsap.com/) · ScrollTrigger
-- **Smooth Scrolling** — [Lenis](https://github.com/darkroomengineering/lenis)
-- **Fonts** — Space Grotesk · Inter · JetBrains Mono via Google Fonts
+- [Three.js](https://threejs.org/) — the 3D engine
+- [GSAP](https://gsap.com/) + ScrollTrigger — scroll choreography
+- [Lenis](https://github.com/darkroomengineering/lenis) — smooth scrolling
+- Space Grotesk, Inter, JetBrains Mono — via Google Fonts
 
 ---
 
 ## License
 
-Personal portfolio. Content, copy and design are © Morrow. Third-party libraries retain their own licenses (MIT for Three.js, GSAP Standard License, Lenis MIT).
+Content, copy, and design are mine. Third-party libraries keep their own licenses (MIT for Three.js and Lenis, GSAP's standard license).
 
-If you want to build something similar — take the ideas, not the code. A portfolio should look like you, not like someone else's website.
+If you're reading this because you want to build something similar — take the ideas, not the code. Your portfolio should look like you, not like mine.
 
 ---
 
@@ -190,5 +155,5 @@ If you want to build something similar — take the ideas, not the code. A portf
 
 ---
 
-<p align="center"><sub>Building systems that matter.</sub></p>
+*Building systems that matter.*
 ```
