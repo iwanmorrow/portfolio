@@ -1,43 +1,75 @@
-# Portfolio Ecosystem
+# MORROW
 
-A sleek, minimal, and performance-oriented personal portfolio designed with a terminal-inspired aesthetic. Built with focusing on typography, clean layouts, and fluid micro-interactions.
+A personal portfolio built around one idea: making a website feel less like a website.
 
-## Live Environment
-> **URL:** [https://vdubdevil.pages.dev]
+MORROW is a small experiment in 3D graphics, motion and web development. The entire page is built around a single Three.js scene that changes as you scroll.
 
----
+A chrome object moves through different shapes, surrounded by rotating rings and floating geometry. Scroll down and the scene evolves. Scroll back up and everything returns.
 
-## Stack & Architecture
+No separate scenes for each section. Just one continuous experience.
 
-- **Markup & Layout:** Semantic HTML5, CSS Grid & Flexbox
-- **Design System:** Custom CSS properties, dark mode optimized (`#030303`), Bento-grid inspirations
-- **Typography:** `Inter` for interface elements, `JetBrains Mono` for telemetry systems, `Caveat` for organic accents
-- **Micro-Interactions:** JavaScript-driven dynamic navigation underlining, layout-reveal animations, and an asynchronous typing system for the hero section
+## About
 
----
+I'm Morrow, an independent developer interested in systems programming, security and the software behind the things we use every day.
 
-## Core Features
+I mostly work with Rust and enjoy building things that are simple in structure but interesting under the hood.
 
-* **Live Status Monitor:** A mock telemetry module simulating real-time system performance ($144\text{ FPS}$, Java/OpenGL hooks).
-* **Adaptive Underline Navigation:** Custom dynamic bounding calculations for hover states and cross-sectional page transitions.
-* **Optimized Responsiveness:** Seamless viewport adaptivity scaling across mobile viewports up to wide monitors.
-* **Asynchronous Text Rotation:** Smooth viewport typing cycles without rendering lag or layout shifting.
+This portfolio is one of those experiments.
 
----
+## Built with
 
-## Local Deployment
+- HTML, CSS and vanilla JavaScript
+- Three.js for the 3D scene
+- GSAP and ScrollTrigger for animation
+- Lenis for smooth scrolling
 
-To run this project locally, simply clone the repository and open the index file:
+Everything lives in a single `index.html` file. There is no build process or complicated setup.
+
+## A few things worth mentioning
+
+- GPU-based geometry morphing between four shapes
+- Procedurally arranged orbital rings and particles
+- Scroll-driven animations that work in both directions
+- Responsive layouts and mobile-specific optimizations
+- Reduced-motion support and a fallback for devices without WebGL
+
+## Running locally
+
+You'll need a local HTTP server because the project uses ES modules.
 
 ```bash
-# Clone the repository
-git clone [https://github.com/vdubdevil/](https://github.com/vdubdevil/)portfolio-web.git
+python3 -m http.server 8080
+```
 
-# Navigate into the project directory
-cd [your-repo-name]
+Open `http://localhost:8080` in your browser.
 
-# Open in your default browser (Mac)
-open index.html
+## Structure
 
-# Open in your default browser (Linux)
-xdg-open index.html
+```text
+MORROW/
+├── index.html
+├── img/
+│   ├── portrait.jpg
+│   ├── NL.png
+│   ├── SYSTEMA.png
+│   └── EMV.png
+└── README.md
+```
+
+## Credits
+
+- [Three.js](https://threejs.org/)
+- [GSAP](https://gsap.com/)
+- [Lenis](https://github.com/darkroomengineering/lenis)
+- Space Grotesk, Inter and JetBrains Mono
+
+## Contact
+
+- Email: hello@morrow.dev
+- GitHub: [@iwanmorrow](https://github.com/iwanmorrow)
+- Telegram: [@voobw](https://t.me/voobw)
+- TikTok: [@morrow737](https://tiktok.com/@morrow737)
+
+---
+
+*Building systems that matter.*
