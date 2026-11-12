@@ -68,7 +68,7 @@ main{position:relative;z-index:5}
 .scene-portrait{height:200vh}
 .portrait-inner{width:100%;max-width:1400px;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
 .portrait-visual{position:relative;aspect-ratio:3/4;max-height:75vh}
-.portrait-img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15);clip-path:inset(100% 0 0 0);will-change:clip-path}
+.portrait-img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.0);clip-path:inset(100% 0 0 0);will-change:clip-path}
 .portrait-img-wrap{position:absolute;inset:0;overflow:hidden}
 .portrait-frame{position:absolute;inset:0;border:1px solid rgba(255,255,255,.08);pointer-events:none}
 .portrait-text .label{font-family:var(--mono);font-size:11px;letter-spacing:5px;color:var(--muted);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px;opacity:0}
@@ -110,9 +110,29 @@ main{position:relative;z-index:5}
 .project-chapter:nth-child(even) .project-inner .project-visual{order:2}
 .project-bg-num{position:absolute;top:50%;left:-4vw;transform:translateY(-50%);font-family:var(--display);font-size:clamp(200px,32vw,520px);font-weight:700;color:rgba(255,255,255,.025);letter-spacing:-.06em;line-height:1;pointer-events:none;z-index:1;white-space:nowrap}
 .project-chapter:nth-child(even) .project-bg-num{left:auto;right:-4vw}
-.project-visual{aspect-ratio:16/11;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.06);border-radius:4px;transform:translateY(60px) scale(.92);opacity:0}
-.project-visual img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.85);transform:scale(1.15);transition:filter .5s}
-.project-visual:hover img{filter:grayscale(.7) contrast(1.2) brightness(.95)}
+.project-visual {
+    aspect-ratio: 18 / 6;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 4px;
+    transform: translateY(60px) scale(.92);
+    opacity: 0;
+    background: #000;
+}
+
+.project-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: contrast(1.1) brightness(.9) grayscale(1);
+    transform: none;
+    transition: filter .5s, transform .5s;
+}
+
+.project-visual:hover img {
+    filter: contrast(1) brightness(1);
+}
 .project-content .project-meta{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:20px;opacity:0;transform:translateX(-20px);display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .project-status{color:var(--fg);padding:3px 9px;border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:9px;letter-spacing:1.5px}
 .project-content h3{font-family:var(--display);font-size:clamp(36px,5vw,72px);font-weight:700;line-height:.98;letter-spacing:-.04em;margin-bottom:24px;opacity:0;transform:translateX(-20px)}
@@ -292,7 +312,7 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <div class="scene-label">02 / About</div>
 <div class="portrait-inner">
 <div class="portrait-visual">
-<div class="portrait-img-wrap"><img class="portrait-img" id="portraitImg" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=900&q=80" alt="Morrow" loading="lazy"></div>
+<div class="portrait-img-wrap"><img class="portrait-img" id="portraitImg" src="img/portrait.jpg" alt="Morrow" loading="lazy"></div>
 <div class="portrait-frame"></div>
 </div>
 <div class="portrait-text">
@@ -348,7 +368,7 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <article class="project-chapter">
 <div class="project-bg-num">01</div>
 <div class="project-inner">
-<div class="project-visual"><img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=1200&q=80" alt="Nightlume" loading="lazy"></div>
+<div class="project-visual"><img src="img/NL.png" alt="Nightlume" loading="lazy"></div>
 <div class="project-content">
 <div class="project-meta">01 / Minecraft Graphics <span class="project-status">Active</span></div>
 <h3>Nightlume <em>Visual Environment</em></h3>
@@ -359,7 +379,7 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <li>Java + OpenGL rendering integration</li>
 </ul>
 <div class="project-tags"><span>Java</span><span>OpenGL</span><span>Shaders</span></div>
-<a href="https://github.com/vdubdevil" class="project-link" target="_blank" rel="noopener">View source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
+<a href="https://github.com/iwanmorrow/nightlume" class="project-link" target="_blank" rel="noopener">View source <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
 </div>
 </div>
 </article>
@@ -367,7 +387,7 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <article class="project-chapter">
 <div class="project-bg-num">02</div>
 <div class="project-inner">
-<div class="project-visual"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80" alt="SYSTEMA" loading="lazy"></div>
+<div class="project-visual"><img src="img/SYSTEMA.png" alt="SYSTEMA" loading="lazy"></div>
 <div class="project-content">
 <div class="project-meta">02 / System Monitoring <span class="project-status">In development</span></div>
 <h3>SYSTEMA <em>Monitoring Toolkit</em></h3>
@@ -378,7 +398,7 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <li>Recovery tools planned as a separate module</li>
 </ul>
 <div class="project-tags"><span>Rust</span><span>Systems</span><span>Monitoring</span></div>
-<a href="https://github.com/vdubdevil" class="project-link" target="_blank" rel="noopener">GitHub profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
+<a href="https://github.com/iwanmorrow/systema-process-monitor" class="project-link" target="_blank" rel="noopener">GitHub profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
 </div>
 </div>
 </article>
@@ -386,10 +406,10 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <article class="project-chapter">
 <div class="project-bg-num">03</div>
 <div class="project-inner">
-<div class="project-visual"><img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=1200&q=80" alt="ENV" loading="lazy"></div>
+<div class="project-visual"><img src="img/EMV.png" alt="EMV" loading="lazy"></div>
 <div class="project-content">
 <div class="project-meta">03 / Computer Vision <span class="project-status">Prototype</span></div>
-<h3>ENV <em>Camera System</em></h3>
+<h3>EMV <em>Camera System</em></h3>
 <p>An early-stage computer vision experiment exploring how object detection can be applied to security camera footage — currently a working prototype rather than a finished product.</p>
 <ul class="features">
 <li>Object detection on live camera feeds</li>
@@ -397,7 +417,7 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <li>Focused on recognition, not yet on full tracking</li>
 </ul>
 <div class="project-tags"><span>Python</span><span>Computer Vision</span><span>Prototype</span></div>
-<a href="https://github.com/vdubdevil" class="project-link" target="_blank" rel="noopener">GitHub profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
+<a href="https://github.com/iwanmorrow/emv" class="project-link" target="_blank" rel="noopener">GitHub profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
 </div>
 </div>
 </article>
@@ -433,16 +453,16 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <h2>Elsewhere on the <em>internet.</em></h2>
 </div>
 <div class="connect-grid">
-<a href="https://github.com/vdubdevil" class="social-card" target="_blank" rel="noopener">
-<div><div class="social-card-name">GitHub</div><div class="social-card-handle">@vdubdevil</div></div>
+<a href="https://github.com/iwanmorrow" class="social-card" target="_blank" rel="noopener">
+<div><div class="social-card-name">GitHub</div><div class="social-card-handle">@iwanmorrow</div></div>
 <div class="social-card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></div>
 </a>
-<a href="https://t.me/vdubdevil" class="social-card" target="_blank" rel="noopener">
-<div><div class="social-card-name">Telegram</div><div class="social-card-handle">@vdubdevil</div></div>
+<a href="https://t.me/@voobw" class="social-card" target="_blank" rel="noopener">
+<div><div class="social-card-name">Telegram</div><div class="social-card-handle">@voobw</div></div>
 <div class="social-card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></div>
 </a>
-<a href="https://tiktok.com/@vdubdevil" class="social-card" target="_blank" rel="noopener">
-<div><div class="social-card-name">TikTok</div><div class="social-card-handle">@vdubdevil</div></div>
+<a href="https://tiktok.com/@morrow737" class="social-card" target="_blank" rel="noopener">
+<div><div class="social-card-name">TikTok</div><div class="social-card-handle">@morrow737</div></div>
 <div class="social-card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></div>
 </a>
 </div>
@@ -468,7 +488,7 @@ nav a.active::before{content:'';position:absolute;left:-20px;top:50%;transform:t
 <h2 class="contact-heading"><span class="word">LET'S</span> <span class="word"><em>TALK.</em></span></h2>
 <a href="mailto:hello@morrow.dev" class="contact-email" data-magnetic>hello@morrow.dev <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
 <div class="contact-foot">
-<span>© 2025 MORROW</span>
+<span>© 2026 MORROW</span>
 <span>Systems · Security · Automation</span>
 <span>Ukraine</span>
 </div>
@@ -648,7 +668,6 @@ if (!prefersReduced) {
       .to(tags, { opacity: 1, x: 0, duration: 0.6 }, 0.6)
       .to(link, { opacity: 1, x: 0, duration: 0.6 }, 0.7);
     gsap.to(bgNum, { scrollTrigger: { trigger: chapter, start: 'top bottom', end: 'bottom top', scrub: 1 }, x: -120, ease: 'none' });
-    gsap.to(img, { scrollTrigger: { trigger: chapter, start: 'top bottom', end: 'bottom top', scrub: 1.5 }, y: -40, ease: 'none' });
   });
 
   gsap.from('.lab-heading .label', {
